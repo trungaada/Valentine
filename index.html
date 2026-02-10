@@ -116,29 +116,32 @@
     }
 
     #birthday {
-      width: 100%;
-      padding: 1.1rem;
-      font-size: 2rem;
-      text-align: center;
-      border: 2px solid rgba(255, 182, 193, 0.6);
-      border-radius: 16px;
-      background: rgba(255, 245, 247, 0.6);
-      color: var(--primary-dark);
-      font-weight: 600;
-      letter-spacing: 3px;
-      margin-bottom: 1.6rem;
-    }
+  width: 100%;
+  padding: 1rem;
+  font-size: clamp(1.3rem, 4vw, 1.7rem); /* nhỏ lại */
+  text-align: center;
+  border: 2px solid rgba(255, 182, 193, 0.6);
+  border-radius: 16px;
+  background: rgba(255, 245, 247, 0.6);
+  color: var(--primary-dark);
+  font-weight: 600;
+  letter-spacing: 2px; /* giảm giãn chữ */
+  margin-bottom: 1.6rem;
+}
+
 .keyboard-frame {
   background-image: url("4.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  padding: 12px;
+  padding: clamp(8px, 2vw, 14px);
   border-radius: 20px;
   box-shadow: 0 6px 18px rgba(255,105,180,0.35);
-  margin: 0 auto 1.5rem auto;   /* căn giữa */
-  max-width: 360px;            /* không quá to */
+  margin: 0 auto 1.5rem auto;
+
+  width: 100%;
+  max-width: 420px;   /* từ 360px -> 420px */
 }
 
 
@@ -146,42 +149,53 @@
 .keyboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.6rem;
+  gap: clamp(0.4rem, 1.5vw, 0.7rem);
 
   background: rgba(255,255,255,0.65);
-  padding: 10px;
+  padding: clamp(8px, 2vw, 12px);
   border-radius: 16px;
 
   justify-items: center;
   align-items: center;
 }
 
-
 /* NÚT */
 .key {
   width: 100%;
   aspect-ratio: 1 / 1;
 
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 3vw, 1.4rem);
   font-weight: 600;
   border: none;
   border-radius: 14px;
   background: white;
   cursor: pointer;
+
   box-shadow: 0 3px 8px rgba(0,0,0,0.06);
-  transition: all 0.2s;
+  transition: all 0.15s ease;
 }
 
-.key:hover {
+/* hover cho PC */
+@media (hover: hover) {
+  .key:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+  }
+}
+
+/* bấm cho mobile */
+.key:active {
+  transform: scale(0.95);
   background: var(--accent);
   color: white;
-  transform: translateY(-2px);
 }
 
 .key.action {
   background: #ffe4e9;
   color: var(--primary-dark);
 }
+
 
     .confirm-btn {
       width: 100%;
@@ -278,7 +292,7 @@
   <h2>💕 Ngày sinh em iu 💕</h2>
   <div class="subtitle">Nhập đúng để nhận quà đặc biệt từ anh nha~ 🥰</div>
 
-  <input type="text" id="birthday" placeholder="DD/MM/YYYY" readonly>
+  <input type="text" id="birthday" placeholder="Ngày/Tháng/Năm" readonly>
 
  <div class="keyboard-frame">
   <div class="keyboard">
@@ -329,6 +343,7 @@ for (let i = 0; i < 18; i++) {
 
 function formatInput(value) {
   const input = document.getElementById("birthday");
+
   if (value.length >= 5)
     input.value = value.slice(0,2)+"/"+value.slice(2,4)+"/"+value.slice(4);
   else if (value.length >= 3)
@@ -384,7 +399,7 @@ function checkDate() {
     return;
   }
 
-  result.innerText = "Đúng rồi! Anh nhớ mãi không quên 💕💕";
+  result.innerText = "Đúng rồi! Đợi nhận quà💕💕";
   result.className = "success";
 
   let i=0;
@@ -398,6 +413,29 @@ function checkDate() {
     window.location.href = "qua.html";
   }, 2000);
 }
+
+
+
+document.querySelectorAll(".key").forEach(btn => {
+  btn.addEventListener("pointerdown", e => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+
+    const x = e.clientX;
+    const y = e.clientY;
+
+    heart.style.left = x + "px";
+    heart.style.top = y + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 800);
+  });
+});
+
 </script>
 
 </body>
