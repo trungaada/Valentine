@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nhập ngày sinh của em iu 💕</title>
+  <title>Nhập ngày sinh của Chị 💕</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
@@ -289,8 +289,8 @@
     <div class="heart-frame"></div>
   </div>
 
-  <h2>💕 Ngày sinh em iu 💕</h2>
-  <div class="subtitle">Nhập đúng để nhận quà đặc biệt từ anh nha~ 🥰</div>
+  <h2>💕 Ngày sinh chị iu 💕</h2>
+  <div class="subtitle">Nhập đúng để nhận quà đặc biệt từ em nha~ 🥰</div>
 
   <input type="text" id="birthday" placeholder="Ngày/Tháng/Năm" readonly>
 
@@ -393,7 +393,7 @@ function checkDate() {
 
   if (input.value !== correctDate) {
     input.classList.add("shake");
-    alert("Sai rồi nè 😢 Thử lại đi mà~");
+    alert("Có cái ngày sinh cũng không nhớ , nhập lại");
     setTimeout(()=>input.classList.remove("shake"),400);
     result.innerText = "";
     return;
