@@ -129,6 +129,7 @@
   margin-bottom: 1.6rem;
 }
 
+
 .keyboard-frame {
   background-image: url("4.jpg");
   background-size: cover;
@@ -163,14 +164,12 @@
 .key {
   width: 100%;
   aspect-ratio: 1 / 1;
-
   font-size: clamp(1rem, 3vw, 1.4rem);
   font-weight: 600;
   border: none;
-  border-radius: 14px;
+  border-radius: 50%; /* nút tròn */
   background: white;
   cursor: pointer;
-
   box-shadow: 0 3px 8px rgba(0,0,0,0.06);
   transition: all 0.15s ease;
 }
@@ -289,7 +288,7 @@
     <div class="heart-frame"></div>
   </div>
 
-  <h2>💕 Ngày sinh chị iu 💕</h2>
+  <h2>💕 Ngày sinh  của Chị 💕</h2>
   <div class="subtitle">Nhập đúng để nhận quà đặc biệt từ em nha~ 🥰</div>
 
   <input type="text" id="birthday" placeholder="Ngày/Tháng/Năm" readonly>
@@ -393,7 +392,7 @@ function checkDate() {
 
   if (input.value !== correctDate) {
     input.classList.add("shake");
-    alert("Có cái ngày sinh cũng không nhớ , nhập lại");
+    alert("Có cái ngày sinh cũng khôngnhớ , nhập lại");
     setTimeout(()=>input.classList.remove("shake"),400);
     result.innerText = "";
     return;
