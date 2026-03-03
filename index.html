@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nhập ngày sinh của Chị 💕</title>
+  <title>Nhập ngày sinh của Nhi 💕</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
@@ -273,23 +273,43 @@
       0% { transform: translateY(0); opacity: 1; }
       100% { transform: translateY(110vh); opacity: 0; }
     }
+
+#transition {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ffe4ef, #fff0f6);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+#transition.show {
+  opacity: 1;
+}
+
+
+
   </style>
 </head>
 
 <body>
+
+
+  <div id="transition"></div>
 
 <div class="bubbles" id="bubbles"></div>
 
 <div class="container">
   <!-- Khung ảnh ny -->
   <div class="profile-section">
-    <img class="profile-img" src="5.jpg" alt="Em iu của anh 💕">
+    <img class="profile-img" src="9.jpg" alt="Em iu của anh 💕">
     <!-- Khung tim overlay -->
     <div class="heart-frame"></div>
   </div>
 
-  <h2>💕 Ngày sinh  của Chị 💕</h2>
-  <div class="subtitle">Nhập đúng để nhận quà đặc biệt từ em nha~ 🥰</div>
+  <h2>💕 Ngày sinh  của Nhi 💕</h2>
+  <div class="subtitle">Nhập đúng để nhận quà đặc biệt từ anh nha~ 🥰</div>
 
   <input type="text" id="birthday" placeholder="Ngày/Tháng/Năm" readonly>
 
@@ -325,13 +345,12 @@
 </svg>
 
 <script>
-const correctDate = "29/05/2008";
+const correctDate = "29/05/2010";
 
 // Bong bóng
 const bubbles = document.getElementById('bubbles');
 for (let i = 0; i < 18; i++) {
   const b = document.createElement('div');
-  b.className = 'bubble';
   const size = Math.random() * 35 + 12;
   b.style.width = b.style.height = size + 'px';
   b.style.left = Math.random() * 100 + '%';
@@ -386,57 +405,55 @@ function createFallingHeart() {
 }
 setInterval(createFallingHeart, 500);
 
-function checkDate() {
-  const input = document.getElementById("birthday");
-  const result = document.getElementById("result");
-
-  if (input.value !== correctDate) {
-    input.classList.add("shake");
-    alert("Có cái ngày sinh cũng khôngnhớ , nhập lại");
-    setTimeout(()=>input.classList.remove("shake"),400);
-    result.innerText = "";
-    return;
-  }
-
-  result.innerText = "Đúng rồi! Đợi nhận quà💕💕";
-  result.className = "success";
-
-  let i=0;
-  const timer = setInterval(()=>{
-    createHeart();
-    i++;
-    if(i>20) clearInterval(timer);
-  },120);
-
-  setTimeout(() => {
-    window.location.href = "qua.html";
-  }, 2000);
-}
-
-
-
 document.querySelectorAll(".key").forEach(btn => {
   btn.addEventListener("pointerdown", e => {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerText = "💖";
 
-    const x = e.clientX;
-    const y = e.clientY;
-
-    heart.style.left = x + "px";
-    heart.style.top = y + "px";
+    heart.style.left = e.clientX + "px";
+    heart.style.top = e.clientY + "px";
 
     document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 800);
+    setTimeout(() => heart.remove(), 800);
   });
 });
 
+function checkDate() {
+  const input = document.getElementById("birthday");
+  const result = document.getElementById("result");
+  const transition = document.getElementById("transition");
+
+  if (input.value !== correctDate) {
+    input.classList.add("shake");
+    alert("Có cái ngày sinh cũng không nhớ, nhập lại 😤");
+    setTimeout(()=>input.classList.remove("shake"),400);
+    result.innerText = "";
+    return;
+  }
+
+  result.innerText = "Đúng rồi! Đợi nhận quà 💕💕";
+  result.className = "success";
+
+  let i = 0;
+  const timer = setInterval(()=>{
+    createHeart();
+    i++;
+    if(i > 20) clearInterval(timer);
+  },120);
+
+  // hiệu ứng mờ dần
+  setTimeout(() => {
+    transition.classList.add("show");
+  }, 800);
+
+  // chuyển trang
+  setTimeout(() => {
+    window.location.href = "qua.html";
+  }, 1600);
+}
 </script>
+
 
 </body>
 </html>
-
