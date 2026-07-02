@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>6 Thiệp Dành Riêng Cho Em 💝</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff0f5, #e0f7fa, #f0e6ff);
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Particle tim nền nhẹ */
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  font-size: 1.2rem;
+  color: rgba(255, 105, 180, 0.6);
+  animation: float 12s linear infinite;
+  user-select: none;
+}
+
+@keyframes float {
+  0%   { transform: translateY(100vh) rotate(0deg); opacity: 0.1; }
+  20%  { opacity: 0.9; }
+  100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 32px 16px;
+  max-width: 1100px;
+  width: 100%;
+  margin: auto;
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  color: #ff4d88;
+  text-align: center;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  margin-bottom: 0.6em;
+  text-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+  letter-spacing: 2px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px;
+  justify-items: center;
+}
+
+/* Card responsive */
+.card {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 2 / 3;
+  perspective: 1200px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
+  filter: drop-shadow(0 16px 32px rgba(255, 105, 180, 0.35));
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border-radius: 24px;
+}
+
+.card.open .card-inner {
+  transform: rotateY(180deg) rotateZ(3deg);
+}
+
+.card-front, 
+.card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.card-front {
+  background: #fff;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card:hover .card-front img {
+  transform: scale(1.08);
+}
+
+.card-back {
+  background: linear-gradient(135deg, #fff5f8, #fff0f5);
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  text-align: center;
+  border: 2px solid #ff99cc;
+}
+
+.card-back h3 {
+  font-family: 'Dancing Script', cursive;
+  color: #ff4d88;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  margin-bottom: 0.6em;
+  text-shadow: 0 2px 6px rgba(255, 77, 136, 0.3);
+}
+
+.card-back p {
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
+  color: #333;
+  line-height: 1.5;
+  max-width: 95%;
+}
+
+/* Mobile nhỏ */
+@media (max-width: 480px) {
+  .wrapper {
+    gap: 16px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 900px) {
+  .card {
+    max-width: 200px;
+  }
+}
+
+/* Desktop lớn */
+@media (min-width: 1200px) {
+  .card {
+    max-width: 240px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+  <h1>6 Thiệp Dành Riêng Cho Heo💝</h1>
+
+  <div class="wrapper">
+
+    <div class="card" onclick="this.classList.toggle('open')">
+      <div class="card-inner">
+        <div class="card-front"><img src="20.jpg" alt=""></div>
+        <div class="card-back">
+          <h3>💌 Thiệp 1</h3>
+          <p>Được trò chuyện với em mỗi ngày là điều mà anh luôn mong đợi nhất."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="this.classList.toggle('open')">
+      <div class="card-inner">
+        <div class="card-front"><img src="20.jpg" alt=""></div>
+        <div class="card-back">
+          <h3>🌸 Thiệp 2</h3>
+          <p>Hôm nay em lại xinh rồi! Đừng cười nhiều quá nhé, anh dễ mất tập trung lắm. 😊"</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="this.classList.toggle('open')">
+      <div class="card-inner">
+        <div class="card-front"><img src="20.jpg" alt=""></div>
+        <div class="card-back">
+          <h3>🎁 Thiệp 3</h3>
+          <p>Gặp được em là một điều bất ngờ mà anh không hề chuẩn bị trước, nhưng em rất thích điều này. 💕</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="this.classList.toggle('open')">
+      <div class="card-inner">
+        <div class="card-front"><img src="20.jpg" alt=""></div>
+        <div class="card-back">
+          <h3> 💗 Thiệp 4</h3>
+          <p>Cảm ơn em vì đã cho anh cơ hội được tìm hiểu và đồng hành cùng em lúc này. 💗</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="this.classList.toggle('open')">
+      <div class="card-inner">
+        <div class="card-front"><img src="20.jpg" alt=""></div>
+        <div class="card-back">
+          <h3>💞 Thiệp 5</h3>
+          <p>Càng tìm hiểu, anh lại càng thấy em có nhiều điều khiến anh muốn được che chở hơn. 💝</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="this.classList.toggle('open')">
+      <div class="card-inner">
+        <div class="card-front"><img src="20.jpg" alt=""></div>
+        <div class="card-back">
+          <h3>💖 Thiệp 6</h3>
+          <p>Mỗi ngày có em là một ngày anh thấy vui vãi  💝</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Tạo particle tim bay nhẹ
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.innerHTML = ['❤️','💗','💞','💖','💕'][Math.floor(Math.random()*5)];
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.animationDuration = (Math.random() * 8 + 10) + 's';
+  heart.style.fontSize = (Math.random() * 1.2 + 0.9) + 'rem';
+  document.getElementById('hearts').appendChild(heart);
+  
+  setTimeout(() => heart.remove(), 15000);
+}
+
+setInterval(createHeart, 800);
+</script>
+
+</body>
+</html>
